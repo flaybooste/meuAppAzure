@@ -12,4 +12,6 @@ def start():
 def selectAll():
     con, cur = start()
     cur.execute("SELECT * FROM dbo.posts")
-    return cur.fetchall()
+    listadb = cur.fetchall()
+    print(listadb)
+    return listadb

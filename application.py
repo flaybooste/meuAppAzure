@@ -6,4 +6,4 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     listadb = selectAll()
-    return jsonify(listadb)
+    return jsonify({listadb})
