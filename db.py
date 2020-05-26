@@ -1,24 +1,15 @@
-import sqlite3
+import pyodbc
 
-con = sqlite3.connect("database/main.db")
-cur = con.cursor()
+def start():
+    server = 'tcp:dudu.database.windows.net'
+    database = 'dudu'
+    username = 'dudu'
+    password = '102829Pedro%'
+    cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+    cursor = cnxn.cursor()
+    return cnxn, cursor
 
-def criarTbl():
-    cur.execute('''CREATE TABLE posts(
-        id INTEGER PRIMARY KEY,
-        desc TEXT,
-        user TEXT
-    )''')
-    cur.fetchall()
-    con.commit()
-    return print("sucesso")
-
-def inserirTeste():
-    cur.execute("INSERT INTO posts VALUES (1,'TESTE','luis')")
-    cur.fetchone()
-    con.commit()
-
-
-def selecionarTbl():
-    cur.execute("SELECT * FROM posts")
-    return cur.fetchone()
+def selectAll():
+    con, cur = start()
+    cur.execute("SELECT * FROM dbo.posts")
+    return cur.fetchall()

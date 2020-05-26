@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
-import db
+from db import selectAll
+
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    listadb = db.selecionarTbl()
+    listadb = selectAll()
     return jsonify(listadb)
