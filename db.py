@@ -15,3 +15,9 @@ def selectAll():
     listadb = cur.fetchall()
     print(listadb)
     return listadb
+
+def selectOne(id):
+    con, cur = start()
+    cur.execute(f"SELECT * FROM dbo.posts WHERE postsid={id}")
+    listadb = cur.fetchall()
+    return listadb
