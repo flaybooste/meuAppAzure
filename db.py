@@ -1,4 +1,5 @@
 import pyodbc
+import json
 
 def start():
     server = 'tcp:dudu.database.windows.net'
@@ -13,8 +14,16 @@ def selectAll():
     con, cur = start()
     cur.execute("SELECT * FROM dbo.posts")
     listadb = cur.fetchall()
-    print(listadb)
-    return listadb
+    lista = []
+    for row in listadb:
+        lis = {
+            "id": row[0],
+            "title":row[1],
+            "descp":row[2],
+            "author":row[3]
+        }
+        lista.append(lis)
+    return lista
 
 def selectOne(id):
     con, cur = start()
