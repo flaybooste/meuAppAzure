@@ -1,9 +1,11 @@
 from flask import Flask, render_template, jsonify, Response
 from flask_restful import Resource, Api
+from flask_cors import CORS
 from db import selectOne, selectAll
 from json import dumps
 
 app = Flask("meu app react", static_folder="./templates/static")
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 api = Api(app)
 
 @app.route("/")
