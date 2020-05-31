@@ -30,3 +30,8 @@ def selectOne(id):
     cur.execute(f"SELECT * FROM dbo.posts WHERE postsid={id}")
     listadb = cur.fetchall()
     return listadb
+
+def deleteAll():
+    con, cur = start()
+    cur.execute("DELETE FROM dbo.posts")
+    con.commit()
